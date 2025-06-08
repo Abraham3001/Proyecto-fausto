@@ -1,0 +1,26 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+footer {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.container {
+  margin-top: 60px;
+}
+
+h1, h2, h3 {
+  color: #000000;
+}
+
+.btn-primary {
+  background-color: #ff3c00;
+  border-color: #ff3c00;
+}
+
+.btn-primary:hover {
+  background-color: #d13200;
+}
