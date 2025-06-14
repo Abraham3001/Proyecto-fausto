@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  scroll-behavior: smooth;
+  padding: 0;
   background-color: #f8f9fa;
 }
 
@@ -12,10 +12,6 @@ html, body {
 
 .btn-primary:hover {
   background-color: #d13200;
-}
-
-h1, h2, h3 {
-  color: #000000;
 }
 
 .container {
@@ -31,3 +27,6 @@ footer {
   padding: 1rem 0;
   text-align: center;
 }
+
+
+
