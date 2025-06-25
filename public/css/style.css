@@ -1,0 +1,134 @@
+/* leucemias.css */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo degradado */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #3a8edb, #7637d3);
+  color: #ffffff;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* Glass header */
+.header-glass {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* Contenedor principal con glassmorphism */
+.panel-glass {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  color: #fff;
+}
+
+/* Títulos */
+.panel-glass h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+}
+.form-control::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,193,7,0.5);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #ffc107;
+  color: #212529;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #e0a800;
+}
+.btn-outline-light {
+  color: #fff;
+  border-color: #fff;
+}
+.btn-outline-light:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* Footer glass */
+.footer-glass {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  margin: 40px auto 0;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  max-width: 700px;
+  border-radius: 0 0 16px 16px;
+}
+
+.bg-light input,
+.bg-light textarea,
+.bg-light select {
+  background-color: #ffffff !important;
+  color: #212529 !important;
+  border: 1px solid #ced4da;
+}
+
+.bg-light input::placeholder,
+.bg-light textarea::placeholder {
+  color: #6c757d !important;
+}
+
+.card-title {
+  font-weight: bold;
+  color: #1a2d4a;
+}
+.card-text {
+  font-size: 0.9rem;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Responsive */
+@media (max-width: 576px) {
+  .panel-glass {
+    padding: 20px;
+  }
+}
+
+
+

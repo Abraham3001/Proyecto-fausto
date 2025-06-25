@@ -1,0 +1,24 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding-top: 80px;
+  background-color: #f3f6fa;
+}
+/*Solo le añad+i un colo black a las letras*/
+.login-box {
+  background-color: #ffffff;
+  color: black;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

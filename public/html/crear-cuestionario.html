@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Cuestionario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="bg-primary text-white py-3 shadow">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h4 mb-0">Sistema de Cuestionarios Médicos</h1>
+    <span class="badge bg-light text-dark">Versión 1.0</span>
+  </div>
+</header>
+
+<main class="container py-5">
+  <h2 class="text-center mb-4">Crear Nuevo Cuestionario</h2>
+
+  <form id="cuestionarioForm" action="/crear-cuestionario" method="POST">
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título del Cuestionario</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+    </div>
+
+    <!-- Contenedor dinámico de preguntas -->
+    <div id="preguntas-container"></div>
+
+    <div class="d-grid my-3">
+      <button type="button" class="btn btn-warning" onclick="agregarPregunta()">➕ Agregar Pregunta</button>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-success">Crear Cuestionario</button>
+    </div>
+  </form>
+
+  <div class="text-center mt-3">
+    <a href="/docente" class="btn btn-outline-secondary">⬅ Volver al Panel</a>
+  </div>
+</main>
+
+<footer class="bg-light text-center text-muted py-3 border-top">
+  <small>&copy; 2025 - Proyecto académico | Desarrollado por weboback</small>
+</footer>
+
+<script src="../js/crear_prguntas.js"></script>
+
+</body>
+</html>

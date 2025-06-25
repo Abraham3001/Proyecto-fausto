@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingreso Panel Docente | QuizLab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/landing.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+
+  <link rel="stylesheet" href="../css/admin-login.css">
+</head>
+<body>
+
+<header class="navbar-initial" id="navbar">
+  <div class="navbar-content">
+    <a href="/" class="navbar-brand">QuizLab</a>
+    <div class="navbar-buttons">
+      <a href="/html/login.html">Iniciar sesión</a>
+      <a href="/html/registro.html">Registrarse</a>
+      <a href="/">Regresar</a>
+    </div>
+  </div>
+</header>
+
+<main class="login-wrapper">
+  <div class="login-card">
+    <h2>Ingreso Panel Docente</h2>
+    <form id="form-admin-login" action="/admin-login" method="POST">
+    <input type="text" name="email" placeholder="Correo institucional">
+    <input type="password" name="password" placeholder="Contraseña">
+    <button type="submit">Ingresar</button>
+  </form>
+  </div>
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <small>&copy; 2025 - Proyecto académico | Desarrollado por weboback</small>
+    </div>
+  </footer>
+  <script src="../js/validacion.js"></script>
+  <script src="../js/landing.js"></script>
+  <script src="../js/navbar.js"></script>
+</body>
+</html>
