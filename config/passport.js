@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const Usuario = require('../models/usuario');
 
-module.exports = function(passport) {
+function configurePassport() {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
@@ -31,7 +31,7 @@ module.exports = function(passport) {
         user = await Usuario.create({
           nombre: profile.displayName,
           email: profile.emails[0].value,
-          password: null, // IMPORTANTE: acepta NULL en tu modelo
+          password: null,
           rol: 'estudiante'
         });
         return done(null, user);
@@ -41,4 +41,7 @@ module.exports = function(passport) {
       return done(err, null);
     }
   }));
-};
+}
+
+// Exporta la función de configuración
+module.exports = configurePassport;
