@@ -2,33 +2,28 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const Usuario = require('../models/usuario');
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      try {
-        const email = profile.emails[0].value.toLowerCase();
-        let usuario = await Usuario.findOne({ where: { email } });
-        if (!usuario) {
-          usuario = await Usuario.create({
-            nombre: profile.displayName || 'Sin nombre',
-            email,
-            password: '-', // no necesitamos contraseña local
-            rol: 'estudiante'
-          });
-        }
-        return done(null, usuario);
-      } catch (error) {
-        console.error('Error en Google Strategy:', error);
-        return done(error, null);
-      }
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.GOOGLE_CALLBACK_URL
+},
+async (accessToken, refreshToken, profile, done) => {
+  try {
+    let usuario = await Usuario.findOne({ where: { googleId: profile.id } });
+    if (!usuario) {
+      usuario = await Usuario.create({
+        nombre: profile.displayName,
+        email: profile.emails[0].value,
+        googleId: profile.id,
+        rol: 'estudiante'
+      });
     }
-  )
-);
+    return done(null, usuario);
+  } catch (err) {
+    console.error("Error en login con Google:", err);
+    return done(err, null);
+  }
+}));
 
 passport.serializeUser((usuario, done) => {
   done(null, usuario.id);
