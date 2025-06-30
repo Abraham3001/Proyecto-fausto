@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editar Cuestionario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <h2 class="mb-4">✏️ Editar Cuestionario</h2>
+
+    <form id="form-editar-cuestionario">
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título</label>
+        <input type="text" id="titulo" name="titulo" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" name="descripcion" class="form-control" rows="3"></textarea>
+      </div>
+
+      <h4>Preguntas</h4>
+      <div id="preguntas-container"></div>
+
+      <button type="button" class="btn btn-success my-3" id="btn-agregar-pregunta">➕ Agregar Pregunta</button>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </form>
+
+    <div class="mt-3">
+      <a href="../html/lista-cuestionarios.html" class="btn btn-secondary">⬅ Volver</a>
+    </div>
+  </div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const cuestionarioId = urlParams.get('id');
+
+  const preguntasContainer = document.getElementById('preguntas-container');
+
+  // Cargar cuestionario y preguntas
+  async function cargarCuestionario() {
+    try {
+      const res = await fetch(`/api/cuestionarios/${cuestionarioId}`);
+      if (!res.ok) throw new Error('No se pudo cargar el cuestionario');
+      const cuestionario = await res.json();
+
+      document.getElementById('titulo').value = cuestionario.titulo;
+      document.getElementById('descripcion').value = cuestionario.descripcion || '';
+
+      preguntasContainer.innerHTML = '';
+      cuestionario.preguntas.forEach(p => {
+        agregarPreguntaDOM(p);
+      });
+    } catch (error) {
+      alert('Error al cargar el cuestionario');
+      console.error(error);
+    }
+  }
+
+  // Agregar pregunta al DOM, opcionalmente con datos
+  function agregarPreguntaDOM(pregunta = null) {
+    const idPregunta = pregunta ? pregunta.id : `new-${Date.now()}`;
+
+    const div = document.createElement('div');
+    div.classList.add('mb-3', 'border', 'p-3', 'rounded');
+    div.dataset.id = idPregunta;
+
+    div.innerHTML = `
+      <label class="form-label">Texto de la pregunta</label>
+      <input type="text" class="form-control texto-pregunta" value="${pregunta ? pregunta.texto : ''}" required />
+      <label class="form-label mt-2">Respuesta</label>
+      <input type="text" class="form-control respuesta-pregunta" value="${pregunta ? pregunta.respuesta : ''}" required />
+      <button type="button" class="btn btn-danger btn-sm mt-3 btn-eliminar-pregunta">Eliminar Pregunta</button>
+    `;
+
+    // Botón eliminar pregunta
+    div.querySelector('.btn-eliminar-pregunta').addEventListener('click', async () => {
+      if (!pregunta) {
+        // Pregunta nueva, solo quitar del DOM
+        div.remove();
+      } else {
+        // Pregunta existente, eliminar desde API
+        if (confirm('¿Seguro que quieres eliminar esta pregunta?')) {
+          try {
+            const res = await fetch(`/api/preguntas/${pregunta.id}`, { method: 'DELETE' });
+            if (!res.ok) throw new Error('Error al eliminar pregunta');
+            div.remove();
+          } catch (err) {
+            alert('Error al eliminar pregunta');
+            console.error(err);
+          }
+        }
+      }
+    });
+
+    preguntasContainer.appendChild(div);
+  }
+
+  // Agregar pregunta nueva al presionar botón
+  document.getElementById('btn-agregar-pregunta').addEventListener('click', () => {
+    agregarPreguntaDOM();
+  });
+
+  // Guardar cambios en cuestionario y preguntas
+  document.getElementById('form-editar-cuestionario').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    try {
+      // Actualizar título y descripción
+      const titulo = document.getElementById('titulo').value.trim();
+      const descripcion = document.getElementById('descripcion').value.trim();
+
+      let res = await fetch(`/api/cuestionarios/${cuestionarioId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ titulo, descripcion })
+      });
+
+      if (!res.ok) throw new Error('Error al actualizar cuestionario');
+
+      // Ahora actualizar las preguntas
+      const preguntasDivs = preguntasContainer.querySelectorAll('div[data-id]');
+      for (const div of preguntasDivs) {
+        const id = div.dataset.id;
+        const texto = div.querySelector('.texto-pregunta').value.trim();
+        const respuesta = div.querySelector('.respuesta-pregunta').value.trim();
+
+        if (!texto || !respuesta) {
+          alert('Todas las preguntas deben tener texto y respuesta');
+          return;
+        }
+
+        if (id.startsWith('new-')) {
+          // Pregunta nueva, crearla
+          res = await fetch(`/api/cuestionarios/${cuestionarioId}/preguntas`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ texto, respuesta })
+          });
+          if (!res.ok) throw new Error('Error al crear pregunta');
+        } else {
+          // Pregunta existente, actualizarla
+          res = await fetch(`/api/preguntas/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ texto, respuesta })
+          });
+          if (!res.ok) throw new Error('Error al actualizar pregunta');
+        }
+      }
+
+      alert('Cuestionario actualizado correctamente');
+      window.location.href = '../html/lista-cuestionarios.html'; // Redirige a lista o donde quieras
+    } catch (error) {
+      alert('Error al guardar los cambios');
+      console.error(error);
+    }
+  });
+
+  cargarCuestionario();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

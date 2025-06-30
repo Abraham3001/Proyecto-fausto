@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Retroalimentación del Estudiante</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/retroalimentación-estudiante.css">
+</head>
+<body class="bg-light">
+
+<header class="navbar-initial">
+  <div class="container nav-wrapper d-flex justify-content-between align-items-center">
+    <a href="/" class="navbar-brand">QuizLab</a>
+    <div class="navbar-buttons">
+      <a href="/estudiante" class="btn btn-outline-primary">⬅ Volver</a>
+    </div>
+  </div>
+</header>
+
+<main class="py-5 feedback-container">
+
+  <section class="feedback-header text-center mb-4">
+    <h2>Retroalimentación de Juan Pérez</h2>
+    <p class="mb-0">Cuestionario: <strong>Leucemias</strong> | Puntaje: <strong>8 / 10</strong></p>
+    <small>Fecha: 20 de junio, 2025</small>
+  </section>
+
+  <section class="feedback-list">
+
+    <!-- Ejemplo item -->
+    <article class="feedback-item correct">
+      <p class="feedback-question">1. ¿Qué es la leucemia?</p>
+      <p class="feedback-answer"><span class="feedback-label">Tu respuesta:</span> Cáncer de la sangre</p>
+      <p class="feedback-answer"><span class="feedback-label">Respuesta correcta:</span> Cáncer de la sangre</p>
+    </article>
+
+    <article class="feedback-item incorrect">
+      <p class="feedback-question">2. ¿Cuál es el tratamiento principal?</p>
+      <p class="feedback-answer"><span class="feedback-label">Tu respuesta:</span> Radioterapia</p>
+      <p class="feedback-answer"><span class="feedback-label">Respuesta correcta:</span> Quimioterapia</p>
+    </article>
+
+    <!-- Más preguntas / feedback dinámicos -->
+
+  </section>
+
+</main>
+
+<footer class="bg-light text-center text-muted py-3 border-top mt-5">
+  <small>&copy; 2025 - Proyecto académico | Desarrollado por weboback</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/retroalimentacion.js"></script>
+</body>
+</html>

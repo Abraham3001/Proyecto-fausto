@@ -1,0 +1,108 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo degradado */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #3a8edb, #7637d3);
+  color: #ffffff;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* Contenedor general tipo panel */
+.panel-glass {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Crucigrama */
+#crucigrama {
+  display: grid;
+  grid-template-columns: repeat(15, 35px);
+  grid-auto-rows: 35px;
+  gap: 3px;
+  justify-content: center;
+  margin: 0 auto 2rem;
+}
+
+/* Casillas */
+.casilla {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  border: 1px solid #2f2f2f;
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Casilla inactiva (gris) */
+.inactiva {
+  background-color: #e0e0e0;
+  border: none;
+}
+
+/* Aciertos y errores */
+.correcto {
+  background-color: #c8f7c5 !important; /* verde claro */
+}
+
+.incorrecto {
+  background-color: #f8d7da !important; /* rojo claro */
+}
+
+/* Botones tipo glass */
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e0a800;
+}
+
+/* Footer opcional */
+.footer-glass {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  margin: 40px auto 0;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  max-width: 800px;
+  border-radius: 0 0 16px 16px;
+}

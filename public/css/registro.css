@@ -1,0 +1,30 @@
+.input-group-text.toggle-password {
+  cursor: pointer;
+  background: #ffffff20;
+  border: none;
+}
+
+.input-group-text.toggle-password:hover {
+  background: #ffffff40;
+}
+
+/* Mensajes */
+#passwordHelp {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+#passwordMatch {
+  font-size: 0.9rem;
+}
+
+/* Barra de fuerza colores */
+.progress-bar.bg-weak {
+  background-color: #dc3545 !important;
+}
+.progress-bar.bg-medium {
+  background-color: #ffc107 !important;
+}
+.progress-bar.bg-strong {
+  background-color: #28a745 !important;
+}

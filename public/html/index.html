@@ -9,22 +9,31 @@
   <link rel="stylesheet" href="../css/landing.css">
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/celulas.css">
+  <link rel="stylesheet" href="../css/cookies.css">
 </head>
 <body>
 
 <!-- Header -->
 <header class="navbar-initial" id="navbar">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a href="/" class="navbar-brand">
-      QuizLab
-    </a>
-    <div class="navbar-buttons">
-      <a href="/iniciar-sesion">Iniciar sesión</a>
-      <a href="/html/registro.html">Registrarse</a>
-      <a href="/admin-login" class="btn btn-outline-light ms-2">Ingreso Panel</a>
-    </div>
+  <div class="container d-flex justify-content-between align-items-center py-2">
+    <a href="/" class="navbar-brand">QuizLab</a>
+    <span id="user-info" class="fw-bold text-primary me-3"></span>
+    <div id="auth-buttons" class="d-flex gap-2"></div>
   </div>
 </header>
+
+<!-- Cookies-->
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <p>
+      Este sitio utiliza cookies para brindarte una mejor experiencia. Al continuar, aceptas su uso.
+    </p>
+    <div class="cookie-buttons">
+      <button id="accept-cookies" class="btn-accept">Aceptar</button>
+      <button id="reject-cookies" class="btn-reject">Rechazar</button>
+    </div>
+  </div>
+</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -56,10 +65,10 @@
   <div class="container">
     <h2 class="titulo-seccion">INTRODUCCIÓN A LAS LEUCEMIAS</h2>
     <p class="descripcion-seccion">
-      Obtené información sobre los distintos tipos de leucemia,<br>
+      Obtener información sobre los distintos tipos de leucemia,<br>
       sus características y tratamientos disponibles.
     </p>
-    <a href="/html/test.html" class="btn btn-warning btn-lg mt-3 fw-semibold px-4">EMPEZAR TEST</a>
+    <a href="../html/login.html" class="btn btn-warning btn-lg mt-3 fw-semibold px-4">EMPEZAR TEST</a>
   </div>
 </section>
 
@@ -72,11 +81,17 @@
           <h5>Cuestionarios Dinámicos</h5>
           <p>Creamos herramientas flexibles para evaluar con precisión.</p>
         </div>
+        <!--
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="/contenido" class="btn-ir-contenido">Explorar Contenido Educativo</a>
+        </div>
+        -->
         <div class="col-md-4">
           <img src="../img/tareas.png" alt="tareas" class="img-fluid icon mb-3">
           <h5>Tareas Académicas</h5>
           <p>Subí y organizá tareas para estudiantes de forma eficiente.</p>
         </div>
+
         <div class="col-md-4">
           <img src="../img/encuestas.png" alt="encuestas" class="img-fluid icon mb-3">
           <h5>Encuestas Médicas</h5>
@@ -99,6 +114,8 @@
   </footer>
 
   <script src="../js/landing.js"></script>
+  <script src="../js/navbarScroll.js"></script>
+<script src="../js/cookies.js"></script>
   <script src="../js/navbar.js"></script>
 </body>
 </html>
