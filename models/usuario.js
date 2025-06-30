@@ -14,7 +14,12 @@ const Usuario = sequelize.define('Usuario', {
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: true // <-- CAMBIA ESTO
+    allowNull: true // Ya está correcto
+  },
+  googleId: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true
   },
   rol: {
     type: DataTypes.ENUM('profesor', 'estudiante'),
