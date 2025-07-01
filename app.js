@@ -351,9 +351,13 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/iniciar-sesion' }),
   (req, res) => {
+    // AQUÍ SE GUARDA EN TU SESIÓN DE EXPRESS
+    req.session.usuarioId = req.user.id;
+    req.session.rol = req.user.rol;
     res.redirect('/estudiante');
   }
 );
+
 
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', 'html', '404.html'));
