@@ -13,7 +13,10 @@ const SubtipoLeucemia = require('./models/subtipoLeucemia');
 const leucemiaEspecifica = require('./models/leucemiaEspecifica');
 const Contenido = require('./models/contenido');
 const Pregunta = require('./models/pregunta');
-const passport = require('./config/passport');
+
+const passport = require('passport');  // ✅ aquí usamos passport de la librería
+const configurePassport = require('./config/passport'); // ✅ traemos la función de configuración
+configurePassport();  // ✅ configuramos las estrategias de Google
 
 // Rutas
 const usuariosRoutes = require('./routes/usuarios');
@@ -46,6 +49,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Aquí sigue todo tu código exactamente igual
 // Middleware de autenticación
 function requiereLogin(req, res, next) {
   if (!req.session.usuarioId) {
@@ -57,11 +61,9 @@ function requiereLogin(req, res, next) {
 function requiereRol(rol) {
   return (req, res, next) => {
     if (!req.session.usuarioId) {
-      // No autenticado
       return res.redirect('/iniciar-sesion');
     }
     if (req.session.rol !== rol) {
-      // Autenticado pero sin permisos
       return res.status(403).sendFile(path.join(__dirname, 'public', 'html', '403.html'));
     }
     next();
@@ -91,7 +93,6 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage });
-
 // Rutas HTML públicas
 app.get('/', (_, res) => res.sendFile(path.join(__dirname, 'public', 'html', 'index.html')));
 app.get('/iniciar-sesion', (_, res) => res.sendFile(path.join(__dirname, 'public', 'html', 'login.html')));
